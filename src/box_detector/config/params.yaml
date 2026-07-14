@@ -1,0 +1,26 @@
+# Parametros del censo de cajas (Parte A).
+# Uso:  ros2 run box_detector box_detector --ros-args --params-file params.yaml
+
+box_detector:
+  ros__parameters:
+    # --- Clustering 1D (separacion de objetos por salto de rango) ---
+    umbral_salto: 0.12          # m  salto de rango que separa dos clusters
+                                #    reducido de 0.15 → separa mejor caja/pared a distancias similares
+
+    # --- Filtros de cluster ---
+    min_puntos: 4               # puntos minimos por cluster (subido de 3 → menos ruido)
+    ancho_caja: 0.20            # m  ancho nominal de la caja CapyTown
+    tolerancia_ancho: 0.10      # m  margen +/- → acepta clusters en [0.10, 0.30] m
+
+    # --- Alcance ---
+    rango_max_deteccion: 3.0    # m  ignora candidatos mas lejanos
+
+    # --- Deduplicacion ---
+    dist_duplicado: 0.30        # m  dos detecciones son la misma caja si estan a < esto
+
+metrics_logger:
+  ros__parameters:
+    # Ground-truth en marco odom como lista plana [x1,y1, x2,y2, ...]
+    ground_truth: [1.0, 0.5, 2.0, -0.5, 3.0, 0.4]
+    tolerancia_match: 0.30      # m  distancia maxima para contar un VP
+    archivo_csv: 'metricas_lidar.csv'

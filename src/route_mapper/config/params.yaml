@@ -1,0 +1,6 @@
+route_mapper:
+  ros__parameters:
+    path_min_step: 0.035
+    max_map_range: 2.60
+    revisit_radius: 0.18
+    min_lap_distance_m: 2.20

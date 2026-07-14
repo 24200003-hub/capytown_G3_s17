@@ -1,0 +1,38 @@
+# Parametros del guardian (Parte B).
+# Lanza los dos nodos con:
+#   ros2 run behavior_fsm behavior_fsm  --ros-args --params-file params.yaml
+#   ros2 run behavior_fsm wall_follower --ros-args --params-file params.yaml
+
+behavior_fsm:
+  ros__parameters:
+    sector_frontal_deg: 45.0    # grados - sector frontal +/- vigilado
+    dist_alerta: 0.30           # m  - entra a CAJA_DETECTADA
+    dist_parada: 0.15           # m  - entra a PARAR
+    vel_crucero: 0.15           # m/s
+    vel_precaucion: 0.07        # m/s
+    vel_giro: 0.5               # rad/s
+    espera_seg: 3.0             # s  - tiempo detenido frente a la caja
+    angulo_rodeo_deg: 30.0      # grados de giro de la maniobra de rodeo
+    avance_rodeo_seg: 2.0       # s  - avance lateral al rodear
+
+wall_follower:
+  ros__parameters:
+    # --- Control lateral ---
+    dist_objetivo:  0.50        # m    distancia deseada a la pared (cuando hay solo una)
+    Kp:             0.80        # rad/s/m  ganancia proporcional del PD
+    Kd:             0.10        # rad/s/(m/s)  ganancia derivativa
+    max_correccion: 0.40        # rad/s  saturacion de la salida (≈ 23 deg/s)
+
+    # --- Clasificacion de segmentos ---
+    min_long_pared: 0.60        # m  longitud minima para considerar un segmento "pared"
+    cos_lateral_min: 0.55       # cos del angulo maximo con el eje X (0.55 ≈ 56 deg)
+
+    # --- Algoritmo S&M ---
+    umbral_split:   0.06        # m  tolerancia de rectitud en Split-and-Merge
+    rango_max:      3.50        # m  distancia maxima de puntos a procesar
+    salto_dist:     0.35        # m  salto euclidiano para cortar grupo en pre-seg
+    salto_idx:      5           # N  huecos de indice para cortar grupo en pre-seg
+
+    # --- Zona angular ignorada (en grados). Descomentar si el cable/soporte tapa el LiDAR ---
+    # remove_min_deg: 135.0
+    # remove_max_deg: 225.0

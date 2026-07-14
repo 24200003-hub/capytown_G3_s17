@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/xmlschema"?>
+<package format3>
+  <name>behavior_fsm</name>
+  <version>0.0.1</version>
+  <description>Paquete de toma de decisiones (FSM) y control de navegacion para el Reto</description>
+  <maintainer email="nino.briceno@esan.edu.pe">Nino Fermin Briceño Huaman</maintainer>
+  <license>Apache License 2.0</license>
+
+  <depend>rclpy</depend>
+  <depend>sensor_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>box_detector</depend>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
